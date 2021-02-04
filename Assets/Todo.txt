@@ -1,0 +1,10 @@
+﻿Forging parts at the anvil
+combining parts at a workbench
+grinding & polishing parts
+equipable items
+
+tree chopping
+wood cutting at a sawmill
+
+ore mining
+ore and alloy smelting
