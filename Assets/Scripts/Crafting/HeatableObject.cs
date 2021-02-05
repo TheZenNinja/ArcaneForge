@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Crafting
 {
-    public abstract class HeatableObject : DraggableObject
+    public class HeatableObject : DraggableObject
     {
         public MetalMaterial material;
         [SerializeField] protected Renderer r;
@@ -22,7 +22,7 @@ namespace Crafting
         public virtual void Setup()
         {
             UpdateMetalData();
-            ps = CreateParticleSystem();
+            //ps = CreateParticleSystem();
             initialized = true;
         }
         public void UpdateMetalData()
@@ -34,27 +34,24 @@ namespace Crafting
             mat = new Material(data.GetIngredientShader);
             r.material = mat;
         }
-        public ParticleSystem CreateParticleSystem()
+        [ContextMenu("Setup Particlesystem")]
+        public void CreateParticleSystem()
         {
-            var basePS = Resources.Load<GameObject>("FXs/Heat Particle");
-
-            var t = Instantiate(basePS, transform).transform;
-            t.localScale = Vector3.one;
-            t.localEulerAngles = Vector3.zero;
-            t.localPosition = Vector3.zero;
-
-            var ps = t.GetComponent<ParticleSystem>();
-            var shape = ps.shape;
-            shape.shapeType = ParticleSystemShapeType.Mesh;
-            var m = GetComponentInChildren<MeshFilter>();
-            shape.mesh = m.sharedMesh;
-            shape.scale = transform.localScale;
-            if (m.gameObject != gameObject)
+            if (ps == null)
             {
-                shape.position = m.transform.localPosition;
-                shape.rotation = m.transform.localEulerAngles;
+                var basePS = Resources.Load<GameObject>("FXs/Heat Particle");
+
+                var t = Instantiate(basePS, transform).transform;
+                t.localScale = Vector3.one;
+                t.localEulerAngles = Vector3.zero;
+                t.localPosition = Vector3.zero;
             }
-            return ps;
+            ps = GetComponentInChildren<ParticleSystem>();
+            var shape = ps.shape;
+            shape.shapeType = ParticleSystemShapeType.Box;
+            var col = GetComponent<BoxCollider>();
+            shape.position = col.center;
+            shape.scale = col.size;
         }
 
         public bool isHeated => currentHeatLevel >= maxHeatLevel;
