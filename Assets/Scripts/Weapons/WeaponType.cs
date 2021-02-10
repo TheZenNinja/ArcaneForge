@@ -15,4 +15,11 @@ public enum WeaponType
     //staff handles
     spear = 4,
     staff = 5,
+    //bows
+    bow = 6,
+    longbow = 7,
+    crossbow = 6,
+    //other ranged
+    shuriken = 9,
+    
 }

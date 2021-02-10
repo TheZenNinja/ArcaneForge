@@ -66,6 +66,7 @@ namespace Crafting
                             case BladeSubtype.shortBlade:
                                 return "Short Blade";
                             case BladeSubtype.sword:
+                                return "Sword Blade";
                             default:
                                 return sub.ToString().Capitalize();
                         }

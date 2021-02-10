@@ -23,9 +23,9 @@ namespace Crafting
         public static List<PartData> partDatas = new List<PartData>()
         { 
             //handles
-            new PartData(new PartID(HandleSubtype.oneHand), 1),
-            new PartData(new PartID(HandleSubtype.twoHand), 2),
-            new PartData(new PartID(HandleSubtype.staff), 4),
+            new PartData(new PartID(HandleSubtype.oneHand), 2),
+            new PartData(new PartID(HandleSubtype.twoHand), 3),
+            new PartData(new PartID(HandleSubtype.staff), 6),
             //guards
             new PartData(new PartID(MiscPartSubtype.guard), 3),
             new PartData(new PartID(MiscPartSubtype.ornament), 1),
@@ -33,7 +33,7 @@ namespace Crafting
             new PartData(new PartID(BladeSubtype.sword), 4),
             new PartData(new PartID(BladeSubtype.singleEdge), 4),
             new PartData(new PartID(BladeSubtype.largeBlade), 6),
-            new PartData(new PartID(BladeSubtype.shortBlade), 2),
+            new PartData(new PartID(BladeSubtype.shortBlade), 1),
         };
 
 
