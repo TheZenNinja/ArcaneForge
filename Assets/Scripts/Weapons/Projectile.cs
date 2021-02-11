@@ -16,11 +16,10 @@ namespace Weapons
         private float timeAlive;
         public LayerMask targetMask;
         private Vector3 hitPosOffset;
-        private void Start()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             col = GetComponent<Collider>();
-            SetSpeed(transform.forward * 20);
         }
         public void FixedUpdate()
         {
@@ -48,13 +47,13 @@ namespace Weapons
                 timeAlive = 0;
             rb.velocity = vel;
             this.timeBeforeGrav = timeBeforeGrav;
+                transform.forward = velDir;
         }
-        
+
         public void ToggleActive(bool active = true)
         {
             this.active = active;
-
-            if (active)
+            if (!active)
                 rb.velocity = Vector3.zero;
 
             rb.collisionDetectionMode = active ? CollisionDetectionMode.Continuous : CollisionDetectionMode.Discrete;
