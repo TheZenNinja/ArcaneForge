@@ -25,7 +25,7 @@ namespace Crafting
         public ParticleSystem startParticle;
         public ParticleSystem finishParticle;
         [Space]
-        AudioSource audio;
+        new AudioSource audio;
         public AudioData craftStartSound;
         public AudioData craftFinishSound;
 
@@ -133,7 +133,7 @@ namespace Crafting
 
             CheckRecipe();
         }
-        public void TryCraft(Player p)
+        public void TryCraft(PlayerData p)
         {
             if (recipe == null)
                 return;

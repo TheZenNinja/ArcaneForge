@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     public bool canlook;
 
-    public Player player;
+    public PlayerData player;
     public Vector3 playerPositionOffset;
     public float moveSpeed = 15;
     public Vector3 camPosOffset = Vector3.up;

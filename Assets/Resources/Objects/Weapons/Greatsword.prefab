@@ -52,11 +52,14 @@ MonoBehaviour:
   type: 2
   renderers:
   - type: 1
-    renderer: {fileID: 5689507461908821836}
+    renderers:
+    - {fileID: 5689507461908821836}
   - type: 0
-    renderer: {fileID: 5889604297791232962}
+    renderers:
+    - {fileID: 5889604297791232962}
   - type: 2
-    renderer: {fileID: 9103723836537546882}
+    renderers:
+    - {fileID: 9103723836537546882}
   parts: []
 --- !u!54 &5004398535848345759
 Rigidbody:
@@ -109,6 +112,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -124,6 +132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
@@ -135,16 +148,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3bb89af475952ba4e80f06f1a1124eef,

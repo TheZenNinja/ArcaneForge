@@ -3,28 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Weapons;
 
 namespace Crafting
 {
     public class WeaponObject : DraggableObject
     {
-        [System.Serializable]
-        public struct PartRenderers : IComparable<PartRenderers>
-        {
-            public string name => type.ToString();
-            public PartType type;
-            public Renderer renderer;
-
-            public void SetMaterial(Material mat) => renderer.material = new Material(mat);
-
-            public int CompareTo(PartRenderers other)
-            {
-                return type.CompareTo(other.type);
-            }
-        }
-
         public WeaponType type;
-        public List<PartRenderers> renderers;
+        public List<WeaponMaterialRenderers> renderers;
         [HideInInspector]
         public List<PartData> parts;
 
@@ -48,7 +34,6 @@ namespace Crafting
                 var data = MaterialDataFunctions.FindMaterial(parts[i].material);
                 Debug.Log(data.GetWeaponShader);
                 renderers[i].SetMaterial(data.GetWeaponShader);
-                //Debug.Log($"Set {renderers[i].type} to {data.shaderPath}");
             }
 
         }

@@ -21,5 +21,7 @@ public enum WeaponType
     crossbow = 6,
     //other ranged
     shuriken = 9,
-    
+    kunai = 10,
+
+    gun = 11,
 }

@@ -23,11 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468202667897378113}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6809607777811932078}
+  - {fileID: 7085620678162861783}
   m_Father: {fileID: 7085620679135055713}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56,13 +57,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7085620678162861782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.099, y: 0.119, z: 0.173}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7085620679407177721}
-  m_Father: {fileID: 7085620679135055713}
-  m_RootOrder: 2
+  m_Father: {fileID: 1031425178597860773}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7085620678162861781
 ParticleSystem:
@@ -4883,7 +4884,6 @@ Transform:
   m_Children:
   - {fileID: 7340751988863432354}
   - {fileID: 1031425178597860773}
-  - {fileID: 7085620678162861783}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4899,18 +4899,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3563ca7d0105e324cab00f5ef9ddbe4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handAnim: {fileID: 0}
   drawnPercentIndicator: {fileID: 0}
   defaultColor: {r: 0.752, g: 0.752, b: 0.752, a: 1}
   specialColor: {r: 1, g: 0, b: 1, a: 1}
   arrowPref: {fileID: 6822619326107816818, guid: e2fbdad68de78ef47a04062993693e2b,
     type: 3}
   currentDrawTime: 0
-  maxDamageDrawTime: 1
-  specialDrawTime: 2
+  maxDamageDrawTime: 0.7
+  specialDrawTime: 1.5
   specialDraw: 0
   speedCurve:
-    minVal: 10
-    maxVal: 20
+    minVal: 15
+    maxVal: 75
     curve:
       serializedVersion: 2
       m_Curve:
@@ -4964,7 +4965,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   gravDelayCurve:
     minVal: 0
-    maxVal: 1
+    maxVal: 0.5
     curve:
       serializedVersion: 2
       m_Curve:
@@ -5022,7 +5023,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  anim: {fileID: 0}
+  arrowSpawnOffset: {x: 0, y: 0, z: 2.5}
+  arrowRotOffset: 0
   rHand: {fileID: 0}
   arrow: {fileID: 468202667897378113}
   overdrawFX: {fileID: 7085620678162861781}
@@ -9985,10 +9987,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 901897122485332503, guid: 8771c01f837da304db63a19fc52eddfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8771c01f837da304db63a19fc52eddfa,
         type: 3}
       propertyPath: m_Name
       value: Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104328952769640370, guid: 8771c01f837da304db63a19fc52eddfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355967116559691914, guid: 8771c01f837da304db63a19fc52eddfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8771c01f837da304db63a19fc52eddfa, type: 3}

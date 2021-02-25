@@ -11,10 +11,11 @@ public class FPCameraController : MonoBehaviour
 
     public bool canlook;
 
-    public Player player;
+    public PlayerData player;
     public Vector3 playerPositionOffset;
     public Camera cam;
     public LayerMask defaultMask;
+    public Vector3 forward => cam.transform.forward;
     public Ray getRay => new Ray(cam.transform.position, cam.transform.forward);
     protected enum FPSTarget
     { 

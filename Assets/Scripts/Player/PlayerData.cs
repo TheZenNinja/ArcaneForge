@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Inventory;
 
-public class Player : MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
-    public static Player instance;
+    public static PlayerData instance;
     private InventoryController _inv;
     public InventoryController inv => _inv;
     public InventoryUI invUi;

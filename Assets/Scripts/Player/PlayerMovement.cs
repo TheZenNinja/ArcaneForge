@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         dashCooldown.Start();
         AddForce(new VelocityInfo(moveDir * (dashDistance/dashDuration), .1f, false, name: "Dash"));
-        Player.instance.hp.InvulernableFor(dashDuration * 2f);
+        PlayerData.instance.hp.InvulernableFor(dashDuration * 2f);
     }
     public void AddForce(VelocityInfo info)
     {

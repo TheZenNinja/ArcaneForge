@@ -39,7 +39,7 @@ public abstract class DraggableObject : MonoBehaviour, IInteractable
         get => transform.localEulerAngles;
         set => transform.localEulerAngles = value;
     }
-    public virtual bool Interact(Player p) => false;
+    public virtual bool Interact(PlayerData p) => false;
 
     protected void Awake()
     {

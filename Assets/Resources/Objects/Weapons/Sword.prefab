@@ -52,11 +52,14 @@ MonoBehaviour:
   type: 0
   renderers:
   - type: 1
-    renderer: {fileID: 5856032839668727303}
+    renderers:
+    - {fileID: 5856032839668727303}
   - type: 0
-    renderer: {fileID: 5624413007565968009}
+    renderers:
+    - {fileID: 5624413007565968009}
   - type: 2
-    renderer: {fileID: 7054627870125597129}
+    renderers:
+    - {fileID: 7054627870125597129}
   parts: []
 --- !u!54 &5004398535848345759
 Rigidbody:
@@ -109,6 +112,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -124,6 +132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
@@ -135,16 +148,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e60eb8ed26222cf4f91d09bd3b45dcc3,

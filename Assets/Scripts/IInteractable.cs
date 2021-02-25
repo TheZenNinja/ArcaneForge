@@ -1,4 +1,4 @@
 ﻿public interface IInteractable
 {
-    bool Interact(Player p);
+    bool Interact(PlayerData p);
 }

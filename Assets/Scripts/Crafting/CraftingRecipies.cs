@@ -22,13 +22,18 @@ namespace Crafting
         public static List<WeaponRecipe> anvilRecipies = new List<WeaponRecipe>()
         {
             new WeaponRecipe("Sword",       new PartID[] { new PartID(BladeSubtype.sword), new PartID(MiscPartSubtype.guard), new PartID(HandleSubtype.oneHand)}, WeaponType.sword),
-            new WeaponRecipe("Dagger",      new PartID[] { new PartID(BladeSubtype.shortBlade), new PartID(HandleSubtype.oneHand) }, WeaponType.dagger),
+            new WeaponRecipe("Dagger",      new PartID[] { new PartID(BladeSubtype.shortBlade), new PartID(MiscPartSubtype.guard), new PartID(HandleSubtype.oneHand) }, WeaponType.dagger),
             
             new WeaponRecipe("Katana",      new PartID[] { new PartID(BladeSubtype.singleEdge), new PartID(HandleSubtype.twoHand)}, WeaponType.katana),
             new WeaponRecipe("Greatsword",  new PartID[] { new PartID(BladeSubtype.largeBlade), new PartID(MiscPartSubtype.guard), new PartID(HandleSubtype.twoHand)}, WeaponType.greatsword),
             
             new WeaponRecipe("Spear",       new PartID[] { new PartID(BladeSubtype.shortBlade), new PartID(HandleSubtype.staff)}, WeaponType.spear),
             new WeaponRecipe("Staff",       new PartID[] { new PartID(MiscPartSubtype.ornament), new PartID(HandleSubtype.staff)}, WeaponType.staff),
+            
+            new WeaponRecipe("Shuriken",    new PartID[] { new PartID(BladeSubtype.shortBlade), new PartID(BladeSubtype.shortBlade)}, WeaponType.shuriken),
+            new WeaponRecipe("Kunai",       new PartID[] { new PartID(HandleSubtype.oneHand), new PartID(BladeSubtype.shortBlade)}, WeaponType.kunai),
+
+            new WeaponRecipe("Mana Caster", new PartID[] { new PartID(HandleSubtype.oneHand), new PartID(MiscPartSubtype.chamber), new PartID(BladeSubtype.barrel)}, WeaponType.gun),
         };
         public static WeaponRecipe GetWeaponRecipe(IEnumerable<PartObject> parts)
         {

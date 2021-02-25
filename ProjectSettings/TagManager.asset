@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - IgnoreInteract
   - Invulnerable
-  - 
-  - 
+  - FriendlyProjectile
+  - EnemyProjectile
   - 
   - 
   - 

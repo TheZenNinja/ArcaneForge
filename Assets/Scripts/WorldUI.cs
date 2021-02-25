@@ -16,19 +16,19 @@ public class WorldUI : UIBase, IInteractable
             Close(null);
 
     }
-    public virtual bool Interact(Player p)
+    public virtual bool Interact(PlayerData p)
     {
         Open(p);
         return true;
     }
-    public override void Open(Player player)
+    public override void Open(PlayerData player)
     {
         //Debug.Log("Interacted with canvas");
         base.Open(player);
         canvas.SetActive(true);
     }
 
-    public override void Close(Player player)
+    public override void Close(PlayerData player)
     { 
         base.Close(player);
         canvas.SetActive(true);

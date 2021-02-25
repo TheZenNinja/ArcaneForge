@@ -12,6 +12,8 @@
         singleEdge = 1,
         largeBlade = 2,
         shortBlade = 3,
+        barrel = 4,
+        bowlimbs = 5,
     }
     public enum HandleSubtype
     {
@@ -23,5 +25,7 @@
     { 
         guard = 0,
         ornament = 1,
+        chamber = 2,
+        bowstring = 3,
     }
 }

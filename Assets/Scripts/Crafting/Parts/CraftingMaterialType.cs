@@ -11,5 +11,6 @@ namespace Crafting
         metal = 0,
         wood = 1,
         stone = 2,
+        other = 3,
     }
 }

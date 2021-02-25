@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Crafting;
 
 namespace Inventory
 {
@@ -12,11 +13,11 @@ namespace Inventory
 
         public GameObject GetObject()
         {
-            return null;
+            return Resources.Load<GameObject>($"Objects/Weapons/{type.ToString().Capitalize()}");
         }
         public GameObject GetWeapon()
-        { 
-            return null;
+        {
+            return Resources.Load<GameObject>($"Weapons/{type.ToString().Capitalize()}");
         }
     }
 }

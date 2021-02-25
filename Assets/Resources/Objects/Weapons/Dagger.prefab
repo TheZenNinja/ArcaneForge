@@ -51,9 +51,11 @@ MonoBehaviour:
   type: 1
   renderers:
   - type: 1
-    renderer: {fileID: 8201329040381825998}
+    renderers:
+    - {fileID: 8201329040381825998}
   - type: 0
-    renderer: {fileID: 6088219260281372836}
+    renderers:
+    - {fileID: 6088219260281372836}
   parts: []
 --- !u!65 &1966298902039966235
 BoxCollider:
@@ -93,6 +95,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -108,6 +115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
@@ -119,16 +131,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e91513dafab3464da7d431caff65126,

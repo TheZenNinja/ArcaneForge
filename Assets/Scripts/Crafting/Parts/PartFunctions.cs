@@ -26,14 +26,20 @@ namespace Crafting
             new PartData(new PartID(HandleSubtype.oneHand), 2),
             new PartData(new PartID(HandleSubtype.twoHand), 3),
             new PartData(new PartID(HandleSubtype.staff), 6),
+
             //guards
             new PartData(new PartID(MiscPartSubtype.guard), 3),
             new PartData(new PartID(MiscPartSubtype.ornament), 1),
+            new PartData(new PartID(MiscPartSubtype.chamber), 2),
+            new PartData(new PartID(MiscPartSubtype.bowstring), 1),
+
             //blades
             new PartData(new PartID(BladeSubtype.sword), 4),
             new PartData(new PartID(BladeSubtype.singleEdge), 4),
             new PartData(new PartID(BladeSubtype.largeBlade), 6),
             new PartData(new PartID(BladeSubtype.shortBlade), 1),
+            new PartData(new PartID(BladeSubtype.barrel), 3),
+            new PartData(new PartID(BladeSubtype.bowlimbs), 4),
         };
 
 

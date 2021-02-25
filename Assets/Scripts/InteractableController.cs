@@ -4,7 +4,7 @@ using UnityEngine;
 public class InteractableController : MonoBehaviour
 {
     FPCameraController cam;
-    Player player;
+    PlayerData player;
     public KeyCode interactKey;
     public float currentObjDist;
     public Vector2 distanceClamp = new Vector2(1,3);
@@ -23,7 +23,7 @@ public class InteractableController : MonoBehaviour
     private void Awake()
     {
         cam = FindObjectOfType<FPCameraController>();
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerData>();
     }
 
     public void Update()

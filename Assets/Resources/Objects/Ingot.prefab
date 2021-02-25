@@ -139,6 +139,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,6 +164,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &9059117644496411202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,13 +184,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1826692464067083564, guid: 216a79fec144b9c4297e342920c2ea17,
         type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: 0.075
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1826692464067083564, guid: 216a79fec144b9c4297e342920c2ea17,
         type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 0.6
+      propertyPath: ShapeModule.m_Position.y
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
         type: 3}
@@ -207,6 +214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -219,16 +231,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6770155829268963467, guid: 216a79fec144b9c4297e342920c2ea17,
         type: 3}

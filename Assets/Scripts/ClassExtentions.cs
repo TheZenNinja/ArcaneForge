@@ -5,6 +5,16 @@ using System.Text.RegularExpressions;
 using System.Linq;
 public static class ClassExtentions
 {
+
+    public static void Play(this AudioSource a, AudioData data)
+    {
+        a.SetData(data);
+        a.Play();
+    }
+    public static void PlayRandomized(this AudioSource a, float pitchVariation = .1f)
+    {
+        throw new System.NotImplementedException();
+    }
     public static void SetData(this AudioSource a, AudioData data)
     {
         a.clip = data.clip;

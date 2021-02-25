@@ -14,14 +14,14 @@ public abstract class UIBase : MonoBehaviour
     //    if (isActive && Input.GetKeyDown(KeyCode.Escape))
     //        Close();
     //}
-    public virtual void Open(Player p)
+    public virtual void Open(PlayerData p)
     {
         canvas.SetActive(true);
         isActive = true;
         UIController.onClose += Close;
         FindObjectOfType<FPCameraController>().ShowCursor(true);
     }
-    public virtual void Close(Player p)
+    public virtual void Close(PlayerData p)
     {
         canvas.SetActive(false);
         isActive = false;

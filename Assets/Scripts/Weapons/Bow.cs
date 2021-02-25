@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 namespace Weapons
 {
     [ExecuteAlways]
-    public class Bow : MonoBehaviour
+    public class Bow : WeaponBase
     {
         public Image drawnPercentIndicator;
         public Color defaultColor;
@@ -24,29 +25,22 @@ namespace Weapons
         public CustomCurve damageCurve;
         public CustomCurve gravDelayCurve;
         public AnimationCurve drawAnimCurve;
-        public Animator anim;
-
+        public Vector3 arrowSpawnOffset;
+        public float arrowRotOffset;
         public Transform rHand;
         public GameObject arrow;
         public ParticleSystem overdrawFX;
         
-        void Start()
-        {
-            drawnPercentIndicator.color = defaultColor;
-            drawnPercentIndicator.fillAmount = 0;
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (arrow && rHand)
             {
                 arrow.transform.position = rHand.position;
-                arrow.transform.forward = rHand.forward;
+                arrow.transform.rotation = rHand.rotation;
             }
-
-            if (!Application.isPlaying)
-                return;
+        }
+        public override void HandleInput()
+        {
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (currentDrawTime < specialDrawTime)
@@ -57,36 +51,90 @@ namespace Weapons
                     currentDrawTime = specialDrawTime;
                     PlayOverdrawnFX();
                 }
-                drawnPercentIndicator.fillAmount = percentDrawn;
-                drawnPercentIndicator.color = currentDrawTime == specialDrawTime ? specialColor : defaultColor;
+
+                if (drawnPercentIndicator)
+                {
+                    drawnPercentIndicator.fillAmount = percentDrawn;
+                    drawnPercentIndicator.color = currentDrawTime == specialDrawTime ? specialColor : defaultColor;
+                }
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                Fire();
+                if (specialDraw)
+                    OverdrawnFire();
+                else
+                    Fire();
 
-                drawnPercentIndicator.color = defaultColor;
-                drawnPercentIndicator.fillAmount = 0;
+                if (drawnPercentIndicator)
+                {
+                    drawnPercentIndicator.color = defaultColor;
+                    drawnPercentIndicator.fillAmount = 0;
+                }
 
                 currentDrawTime = 0;
-                anim.SetTrigger("Fire");
+                handAnim.SetTrigger("Fire");
                 specialDraw = false;
             }
-            anim.SetFloat("Bow Draw Percent", drawAnimCurve.Evaluate(percentDrawn));
+            handAnim.SetFloat("Bow Draw Percent", drawAnimCurve.Evaluate(percentDrawn));
         }
         public void Fire()
         {
-            Transform camPos = FindObjectOfType<FPCameraController>().cam.transform;
+            FPCameraController cam = FindObjectOfType<FPCameraController>();
 
-            Projectile p = Instantiate(arrowPref, camPos.TransformPoint(Vector3.forward * 2), Quaternion.identity).GetComponent<Projectile>();
+            RaycastHit hit;
+            Vector3 dir;
+            if (cam.GetRaycast(out hit, 100))
+                dir = (hit.point-rHand.TransformPoint(arrowSpawnOffset)).normalized;
+            else 
+                dir = (cam.getRay.GetPoint(100)-rHand.TransformPoint(arrowSpawnOffset)).normalized;
 
-            p.SetSpeed(camPos.forward * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn));
-                
+            Projectile p = Instantiate(arrowPref, rHand.TransformPoint(arrowSpawnOffset), Quaternion.identity).GetComponent<Projectile>();
+            p.SetSpeed(dir * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn));
+
+            overdrawFX.Stop();
+            overdrawFX.Clear();
+        }
+        public void OverdrawnFire()
+        {
+            FPCameraController cam = FindObjectOfType<FPCameraController>();
+
+            RaycastHit hit;
+            Vector3 dir;
+            if (cam.GetRaycast(out hit, 100))
+                dir = (hit.point - rHand.TransformPoint(arrowSpawnOffset)).normalized;
+            else
+                dir = (cam.getRay.GetPoint(100) - rHand.TransformPoint(arrowSpawnOffset)).normalized;
+            
+            //change this so it splits in the arrow class instead 
+            Projectile p1 = Instantiate(arrowPref, rHand.TransformPoint(arrowSpawnOffset), Quaternion.identity).GetComponent<Projectile>();
+            p1.SetSpeed(dir * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn)); 
+
+            Projectile p2 = Instantiate(arrowPref, rHand.TransformPoint(arrowSpawnOffset), Quaternion.identity).GetComponent<Projectile>();
+            p2.SetSpeed((dir + Vector3.up * .1f).normalized * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn)); 
+
+            Projectile p3 = Instantiate(arrowPref, rHand.TransformPoint(arrowSpawnOffset), Quaternion.identity).GetComponent<Projectile>();
+            p3.SetSpeed((dir - Vector3.up * .1f).normalized * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn));
+
+            overdrawFX.Stop();
+            overdrawFX.Clear();
+        }
+
+        public override void Equip(EquipmentController equipment)
+        {
+            base.Equip(equipment);
+            rHand = equipment.weaponR;
+            drawnPercentIndicator = equipment.UI.cursorCircle;
         }
         public int GetDamage() => Mathf.RoundToInt(damageCurve.Evaluate(percentDrawn));
 
         public void PlayOverdrawnFX()
         {
             overdrawFX.Play();
+        }
+        private void OnDrawGizmosSelected()
+        {
+            if (rHand)
+                Gizmos.DrawSphere(rHand.TransformPoint(arrowSpawnOffset), .1f);
         }
     }
 }

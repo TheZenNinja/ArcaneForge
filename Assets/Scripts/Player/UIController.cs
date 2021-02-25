@@ -5,12 +5,12 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public static bool inUI;
-    public static Action<Player> onClose;
+    public static Action<PlayerData> onClose;
 
-    public Player player;
+    public PlayerData player;
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerData>();
     }
 
     // Update is called once per frame

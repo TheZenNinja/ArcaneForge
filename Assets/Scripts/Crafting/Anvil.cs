@@ -15,7 +15,7 @@ namespace Crafting
         public Vector3 ingotTiling;
 
         public Vector3 alignmentDir;
-        AudioSource audio;
+        new AudioSource audio;
         public bool canCraft()
         {
             if (currentPart == 0)
@@ -192,7 +192,7 @@ namespace Crafting
             }
         }
 
-        public bool Interact(Player p)
+        public bool Interact(PlayerData p)
         {
             if (canCraft())
             {

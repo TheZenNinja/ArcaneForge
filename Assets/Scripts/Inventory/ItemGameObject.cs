@@ -5,7 +5,7 @@ namespace Inventory
     public class ItemGameObject : MonoBehaviour, IInteractable
     {
         public ItemStack stack;
-        public bool Interact(Player p) => p.inv.AddItem(stack);
+        public bool Interact(PlayerData p) => p.inv.AddItem(stack);
 
         public static ItemGameObject Spawn(ItemStack stack, Vector3 position)
         {

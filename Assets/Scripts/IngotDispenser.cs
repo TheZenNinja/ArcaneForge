@@ -9,7 +9,7 @@ public class IngotDispenser : MonoBehaviour
     public TextMeshProUGUI text;
     public MetalMaterial material;
     public Vector3 offset;
-    AudioSource audio;
+    new AudioSource audio;
     private void Start()
     {
         audio = GetComponent<AudioSource>();
