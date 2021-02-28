@@ -1,0 +1,42 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "FBX Export Settings",
+        "m_EditorClassIdentifier": "Unity.Formats.Fbx.Editor:UnityEditor.Formats.Fbx.Exporter:ExportSettings",
+        "Verbose": false,
+        "launchAfterInstallation": true,
+        "HideSendToUnityMenu": true,
+        "BakeAnimation": true,
+        "showConvertToPrefabDialog": true,
+        "integrationSavePath": "C:\\Users\\Matthew\\Repos\\ArcaneForge2020",
+        "selectedDCCApp": 0,
+        "prefabSavePaths": [
+            "Player",
+            "."
+        ],
+        "fbxSavePaths": [
+            "Player",
+            "."
+        ],
+        "selectedFbxPath": 1,
+        "selectedPrefabPath": 1,
+        "dccOptionNames": [],
+        "dccOptionPaths": [],
+        "exportModelSettingsSerialize": {
+            "exportFormat": 1,
+            "animatedSkinnedMesh": true,
+            "mayaCompatibleNaming": true,
+            "include": 0,
+            "lodLevel": 0,
+            "objectPosition": 0,
+            "exportUnrendered": true,
+            "preserveImportSettings": false
+        },
+        "convertToPrefabSettingsSerialize": {
+            "exportFormat": 1,
+            "animatedSkinnedMesh": false,
+            "mayaCompatibleNaming": false
+        }
+    }
+}

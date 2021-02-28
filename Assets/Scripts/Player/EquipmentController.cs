@@ -14,7 +14,7 @@ namespace Player
         public List<WeaponData> weapons;
 
         public List<WeaponBase> weaponObjects;
-        public int weaponIndex;
+        public int currentWeaponIndex;
         public Transform weaponR, weaponL;
         #region Debugging
         [Header("Editor Debugging")]
@@ -43,11 +43,11 @@ namespace Player
                 Equip(2);
 
             if (!AnimationDataHandler.instance.preventAttacking)
-                weaponObjects[weaponIndex].HandleInput();
+                weaponObjects[currentWeaponIndex].HandleInput();
         }
         public void Equip(int index)
         {
-            weaponIndex = index;
+            currentWeaponIndex = index;
             handAnim.SetInteger("Weapon Type", (int)weapons[index].type);
 
             for (int i = 0; i < weaponObjects.Count; i++)
@@ -67,10 +67,8 @@ namespace Player
         public void EquipItem(WeaponData data, int index)
         {
             weapons[index] = data;
-            if (weaponObjects[index].gameObject)
+            if (weaponObjects[index] != null && weaponObjects[index].gameObject != null)
                 Destroy(weaponObjects[index].gameObject);
-
-            CreateWeaponMesh(data, index);
         }
         public void CreateWeaponMesh(WeaponData data, int index)
         {
@@ -87,6 +85,10 @@ namespace Player
                     break;
             }
             weaponObjects[index] = w;
+        }
+        public void ToggleWeaponVisibility(bool visible = true)
+        {
+            weaponObjects[currentWeaponIndex].ToggleVisibility(visible);
         }
     }
 }

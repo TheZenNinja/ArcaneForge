@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Weapons
 {
     [ExecuteAlways]
-    public class Bow : WeaponBase
+    public class Bow : RangedWeapon
     {
         public Image drawnPercentIndicator;
         public Color defaultColor;
@@ -27,7 +27,6 @@ namespace Weapons
         public AnimationCurve drawAnimCurve;
         public Vector3 arrowSpawnOffset;
         public float arrowRotOffset;
-        public Transform rHand;
         public GameObject arrow;
         public ParticleSystem overdrawFX;
         
@@ -79,14 +78,7 @@ namespace Weapons
         }
         public void Fire()
         {
-            FPCameraController cam = FindObjectOfType<FPCameraController>();
-
-            RaycastHit hit;
-            Vector3 dir;
-            if (cam.GetRaycast(out hit, 100))
-                dir = (hit.point-rHand.TransformPoint(arrowSpawnOffset)).normalized;
-            else 
-                dir = (cam.getRay.GetPoint(100)-rHand.TransformPoint(arrowSpawnOffset)).normalized;
+            Vector3 dir = GetCamDirFromPoint(rHand.TransformPoint(arrowSpawnOffset));
 
             Projectile p = Instantiate(arrowPref, rHand.TransformPoint(arrowSpawnOffset), Quaternion.identity).GetComponent<Projectile>();
             p.SetSpeed(dir * speedCurve.Evaluate(percentDrawn), gravDelayCurve.Evaluate(percentDrawn));
@@ -122,7 +114,6 @@ namespace Weapons
         public override void Equip(EquipmentController equipment)
         {
             base.Equip(equipment);
-            rHand = equipment.weaponR;
             drawnPercentIndicator = equipment.UI.cursorCircle;
         }
         public int GetDamage() => Mathf.RoundToInt(damageCurve.Evaluate(percentDrawn));

@@ -78,7 +78,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523532500926803611}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.11980522
   m_Height: 1.0393652
@@ -130,6 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handAnim: {fileID: 0}
+  rHand: {fileID: 0}
+  lHand: {fileID: 0}
+  mesh: {fileID: 4973396476044586047}
   kunaiProjectile: {fileID: 523532500926803611}
 --- !u!1001 &243642426108490561
 PrefabInstance:
@@ -285,6 +288,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 864d2a1121285fa4d9f7caecb73baef5, type: 3}
+--- !u!1 &4973396476044586047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 864d2a1121285fa4d9f7caecb73baef5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5315483889414443374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5642690453382985349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 864d2a1121285fa4d9f7caecb73baef5,

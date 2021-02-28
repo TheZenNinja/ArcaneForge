@@ -16,6 +16,8 @@ public class LevelLoader : MonoBehaviour
     }
     IEnumerator LoadAsync()
     {
+        yield return new WaitForSecondsRealtime(0.1f);
+
         if (SceneLoader.bufferedScene != -1)
         {
             AsyncOperation load = SceneManager.LoadSceneAsync(SceneLoader.bufferedScene);

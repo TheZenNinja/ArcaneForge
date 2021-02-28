@@ -1,12 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public int maxHP;
-    public int currentHP;
-    public float percent => (float)currentHP / maxHP;
+    public List<HealthSegment> segments;
 
     public UnityAction onHit;
     public UnityAction onDeath;
@@ -29,6 +28,25 @@ public class Health : MonoBehaviour
                 gameObject.layer = prevLayer;
         }
     }
+    public float getPercent()
+    {
+        float currentHP = 0;
+        int totalHP = 0;
+        foreach (var s in segments)
+        {
+            currentHP += s.currentHP;
+            totalHP += s.maxHP;
+        }
+
+        return currentHP / totalHP;
+    }
+    public bool noHPLeft()
+    {
+        foreach (var s in segments)
+            if (s.currentHP > 0)
+                return false;
+        return true;
+    }
     public void InvulernableFor(float duration) => StartCoroutine(InvulTimer(duration));
     IEnumerator InvulTimer(float duration)
     {
@@ -36,13 +54,18 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(duration);
         invulnerable = false;
     }
-    public void Hit(int dmg)
+    public void Hit(DamageData data)
     {
-        currentHP -= dmg;
+        foreach (var s in segments)
+        {
+            data = s.TakeDamage(data);
+            if (data.isNone)
+                break;
+        }
 
         onHit?.Invoke();
 
-        if (currentHP <= 0)
+        if (getPercent() <= 0)
             onDeath?.Invoke();
     }
 }
