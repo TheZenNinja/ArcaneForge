@@ -5,9 +5,8 @@ using Player;
 namespace Weapons
 {
     [System.Serializable]
-    public class Gun : WeaponBase
+    public class Gun : RangedWeapon
     {
-        public AmmoCounter ammo = new AmmoCounter(8);
         public AudioData shoot;
         public AudioData reload;
         public AudioSource source;
@@ -16,6 +15,8 @@ namespace Weapons
         public int RPM = 220;
         public Timer shotDelayTimer = new Timer(0.1f);
         public bool canFire = true;
+        public override WeaponType weaponType => WeaponType.gun;
+
         private void Start()
         {
             ammo.Reload();
@@ -24,6 +25,8 @@ namespace Weapons
         }
         public override void HandleInput()
         {
+
+
             if (Input.GetKeyDown(KeyCode.R) && !ammo.isFull)
             {
                 handAnim.SetTrigger("Reload");
@@ -43,7 +46,7 @@ namespace Weapons
         }
         public void Shoot()
         {
-            var c = FindObjectOfType<FPCameraController>();
+            var c = StaticRefences.camController;
             RaycastHit hit;
             if (c.GetRaycast(out hit))
             {
@@ -55,6 +58,7 @@ namespace Weapons
         {
             shotDelayTimer.Tick();
         }
+
         public void UpdateRPM()
         {
             shotDelayTimer.timerLength = 60f / RPM;

@@ -35,6 +35,9 @@ namespace Player
         }
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Tab))
+                Debug.Log(GetCurrentWeaponObj<RangedWeapon>());
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 Equip(0);
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -42,8 +45,26 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.Alpha3))
                 Equip(2);
 
-            if (!AnimationDataHandler.instance.preventAttacking)
+            if (!StaticRefences.animDataHandler.preventAttacking)
+            {
                 weaponObjects[currentWeaponIndex].HandleInput();
+                GetCurrentWeaponObj().HandleInput();
+                GetCurrentWeaponObj().UpdateUI();
+            }
+        }
+        public WeaponBase GetCurrentWeaponObj() => weaponObjects[currentWeaponIndex];
+        public T GetCurrentWeaponObj<T>() where T : WeaponBase
+        {
+            WeaponBase wep = GetCurrentWeaponObj();
+            try
+            {
+                return (T)wep;
+            }
+            catch (System.InvalidCastException ex)
+            {
+                Debug.Log("Invalid Cast");
+                return null;
+            }
         }
         public void Equip(int index)
         {

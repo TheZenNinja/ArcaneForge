@@ -57,14 +57,19 @@ namespace Weapons
                     Destroy(gameObject);
             }
         }
-        public void SetSpeed(Vector3 vel, float timeBeforeGrav = 1, bool resetTimeAlive = true)
+        public void SetSpeed(Vector3 vel, bool resetTimeAlive = true)
         {
             ToggleActive(true);
             if (resetTimeAlive)
                 timeAlive = 0;
             rb.velocity = vel;
+            transform.forward = velDir;
+
+        }
+        public void SetSpeed(Vector3 vel, float timeBeforeGrav, bool resetTimeAlive = true)
+        {
             this.timeBeforeGrav = timeBeforeGrav;
-                transform.forward = velDir;
+            SetSpeed(vel, resetTimeAlive);
         }
 
         public void ToggleActive(bool active = true)

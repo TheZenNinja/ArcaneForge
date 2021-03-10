@@ -7,7 +7,7 @@ public class WorldUI : UIBase, IInteractable
     public override void Start()
     {
         var c = GetComponent<Canvas>();
-        c.worldCamera = FindObjectOfType<FPCameraController>().cam;
+        c.worldCamera = StaticRefences.camController.cam;
         canvas = c.gameObject;
     }
     public void Update()

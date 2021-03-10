@@ -9,8 +9,11 @@ namespace Weapons
         public Animator handAnim;
         [HideInInspector]
         public Transform rHand, lHand;
+        [HideInInspector]
+        public abstract WeaponType weaponType { get; }
         public GameObject mesh;
         public abstract void HandleInput();
+        public abstract void UpdateUI();
         public virtual void Equip(Player.EquipmentController equipment)
         {
             rHand = equipment.weaponR;
@@ -25,6 +28,7 @@ namespace Weapons
         public void ToggleVisibility(bool visible = true)
         {
             mesh.SetActive(visible);
+            StaticRefences.equipmentUI.EquipWeapon(weaponType);
         }
     }
 }

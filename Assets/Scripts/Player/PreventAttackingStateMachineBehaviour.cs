@@ -17,8 +17,7 @@ namespace Player
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             if (!startAtTime)
-                AnimationDataHandler.instance.preventAttacking = true;
-            Debug.Log(endTime);
+                StaticRefences.animDataHandler.preventAttacking = true;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,17 +25,17 @@ namespace Player
         {
             if (startAtTime)
                 if (Mathf.Abs(stateInfo.normalizedTime - startTime) <= 0.01f)
-                    AnimationDataHandler.instance.preventAttacking = true;
+                    StaticRefences.animDataHandler.preventAttacking = true;
             if (endAtTime)
                 if (Mathf.Abs(stateInfo.normalizedTime - endTime) <= 0.01f)
                 {
-                    AnimationDataHandler.instance.preventAttacking = false;
+                    StaticRefences.animDataHandler.preventAttacking = false;
                 }
         }
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            AnimationDataHandler.instance.preventAttacking = false;
+            StaticRefences.animDataHandler.preventAttacking = false;
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

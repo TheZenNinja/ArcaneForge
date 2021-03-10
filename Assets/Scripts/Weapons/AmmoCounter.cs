@@ -22,6 +22,7 @@ namespace Weapons
         {
             current = max;
         }
+        public override string ToString() => $"{current}/{max}";
         public static AmmoCounter operator +(AmmoCounter a, int i)
         {
             a.current = UnityEngine.Mathf.Clamp(a.current + i, 0, int.MaxValue);

@@ -19,13 +19,12 @@ public class InteractableController : MonoBehaviour
 
     public float holdTime;
     public bool isHolding;
-    // Use this for initialization
-    private void Awake()
+    private void Start()
     {
-        cam = FindObjectOfType<FPCameraController>();
-        player = FindObjectOfType<PlayerData>();
-    }
+        cam = StaticRefences.camController;
+        player = StaticRefences.player;
 
+    }
     public void Update()
     {
         if (UIController.inUI)

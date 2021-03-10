@@ -7,12 +7,6 @@ public class UIController : MonoBehaviour
     public static bool inUI;
     public static Action<PlayerData> onClose;
 
-    public PlayerData player;
-    void Start()
-    {
-        player = FindObjectOfType<PlayerData>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -21,10 +15,10 @@ public class UIController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Tab))
             {
                 Debug.Log("Close");
-                onClose?.Invoke(player);
+                onClose?.Invoke(StaticRefences.player);
                 //clears the action while preventing null reference exceptions
                 onClose = delegate { };
-                FindObjectOfType<FPCameraController>().ShowCursor(false);
+                StaticRefences.camController.ShowCursor(false);
             }
         }
     }

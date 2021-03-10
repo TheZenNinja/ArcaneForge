@@ -19,6 +19,9 @@ namespace Weapons
         public float maxDamageDrawTime = 1f;
         public float specialDrawTime = 2f;
         public float percentDrawn => Mathf.Clamp01(currentDrawTime/ maxDamageDrawTime);
+
+        public override WeaponType weaponType => WeaponType.bow;
+
         public bool specialDraw;
 
         public CustomCurve speedCurve;
@@ -88,7 +91,7 @@ namespace Weapons
         }
         public void OverdrawnFire()
         {
-            FPCameraController cam = FindObjectOfType<FPCameraController>();
+            FPCameraController cam = StaticRefences.camController;
 
             RaycastHit hit;
             Vector3 dir;

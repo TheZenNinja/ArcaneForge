@@ -15,4 +15,5 @@ public class EasterEgg : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, cam.position + cam.forward);
         }
     }
+
 }

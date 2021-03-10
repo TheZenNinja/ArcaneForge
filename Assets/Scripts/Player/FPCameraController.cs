@@ -21,17 +21,20 @@ public class FPCameraController : MonoBehaviour
     { 
         Target30 = 30,
         Target60 = 60,
-        Target90 = 90,
+        Target72 = 72,
         Target120 = 120,
         Target144 = 144,
         Target240 = 240,
     }
     [SerializeField]
     protected FPSTarget fPSTarget;
+    private void Awake()
+    {
+        StaticRefences.camController = this;
+    }
     void Start()
     {
         Application.targetFrameRate = (int)fPSTarget;
-
 
         ShowCursor(false);
     }

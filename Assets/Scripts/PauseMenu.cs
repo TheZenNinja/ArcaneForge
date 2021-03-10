@@ -68,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         {
             open = !open;
             ui.SetActive(open);
-            FindObjectOfType<FPCameraController>().ShowCursor(open);
+            StaticRefences.camController.ShowCursor(open);
         }
     }
     public void ExitToMenu() => SceneLoader.LoadMenu();

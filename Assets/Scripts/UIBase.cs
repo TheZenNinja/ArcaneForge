@@ -19,12 +19,12 @@ public abstract class UIBase : MonoBehaviour
         canvas.SetActive(true);
         isActive = true;
         UIController.onClose += Close;
-        FindObjectOfType<FPCameraController>().ShowCursor(true);
+        StaticRefences.camController.ShowCursor(true);
     }
     public virtual void Close(PlayerData p)
     {
         canvas.SetActive(false);
         isActive = false;
-        FindObjectOfType<FPCameraController>().ShowCursor(false);
+        StaticRefences.camController.ShowCursor(false);
     }
 }

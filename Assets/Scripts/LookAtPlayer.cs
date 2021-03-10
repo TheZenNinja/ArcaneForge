@@ -29,7 +29,7 @@ public class LookAtPlayer : MonoBehaviour
 
         while (looking)
         {
-            var cam = FindObjectOfType<FPCameraController>();
+            var cam = StaticRefences.camController;
             if (cam)
             {
                 target = cam.cam.transform;

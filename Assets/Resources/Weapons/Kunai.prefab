@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  gravity: 0
-  timeBeforeGrav: 0
+  gravity: 12
+  timeBeforeGrav: 0.5
   targetMask:
     serializedVersion: 2
     m_Bits: 11827
@@ -133,6 +133,7 @@ MonoBehaviour:
   rHand: {fileID: 0}
   lHand: {fileID: 0}
   mesh: {fileID: 4973396476044586047}
+  projectileSpeed: 45
   kunaiProjectile: {fileID: 523532500926803611}
 --- !u!1001 &243642426108490561
 PrefabInstance:

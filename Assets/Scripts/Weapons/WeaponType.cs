@@ -18,7 +18,7 @@ public enum WeaponType
     //bows
     bow = 6,
     longbow = 7,
-    crossbow = 6,
+    crossbow = 8,
     //other ranged
     shuriken = 9,
     kunai = 10,
