@@ -17,6 +17,18 @@ namespace Weapons
             else
                 StaticRefences.equipmentUI.UpdateAmmo(ammo);
         }
+        public override void ApplyDataInfo(AnimDataStatePass data)
+        {
+            switch (data)
+            {
+                case AnimDataStatePass.isReloadingTrue:
+                    isReloading = true;
+                    break;
+                case AnimDataStatePass.isReloadingFalse:
+                    isReloading = false;
+                    break;
+            }
+        }
         public Vector3 GetCamDirFromPoint(Vector3 position)
         {
             FPCameraController cam = StaticRefences.camController;

@@ -8,51 +8,133 @@ namespace Player
 {
     public class EquipmentController : MonoBehaviour
     {
+        [System.Serializable]
+        public class EquipmentSet
+        {
+            [Header("Data")]
+            [SerializeReference]
+            public WeaponData primary = WeaponData.none;
+            public WeaponData secondary = WeaponData.none;
+
+            [Header("GameObjects")]
+            public WeaponBase primaryObject;
+            public WeaponBase secondaryObject;
+
+            public void EnableSelectedWeapon(WeaponBase currentWeapon)
+            {
+                primaryObject.gameObject.SetActive(primaryObject == currentWeapon);
+                secondaryObject.gameObject.SetActive(primaryObject == currentWeapon);
+            }
+            public void InstantiateMeshes(Transform R, Transform L)
+            {
+                if (primary.hand == WeaponData.EquipedHand.right)
+                    primaryObject = Instantiate(primary.GetWeapon(), R).GetComponent<WeaponBase>();
+                else
+                    primaryObject = Instantiate(primary.GetWeapon(), L).GetComponent<WeaponBase>();
+
+                if (secondary.hand == WeaponData.EquipedHand.right)
+                    secondaryObject = Instantiate(secondary.GetWeapon(), R).GetComponent<WeaponBase>();
+                else
+                    secondaryObject = Instantiate(secondary.GetWeapon(), L).GetComponent<WeaponBase>();
+            }
+            public void DestroyGameObjects()
+            {
+                if (primaryObject.gameObject)
+                {
+                    if (Application.isPlaying)
+                        Destroy(primaryObject.gameObject);
+                    else
+                        DestroyImmediate(primaryObject.gameObject);
+                }
+
+                if (secondaryObject.gameObject)
+                {
+                    if (Application.isPlaying)
+                        Destroy(secondaryObject.gameObject);
+                    else
+                        DestroyImmediate(secondaryObject.gameObject);
+                }
+            }
+            ~EquipmentSet()
+            {
+                DestroyGameObjects();
+            }
+            
+            //[SerializeReference]
+            //public WeaponData ability1, ability2;
+        }
+
+
         public EquipmentUI UI;
         public Animator handAnim;
-        [SerializeReference] 
-        public List<WeaponData> weapons;
 
-        public List<WeaponBase> weaponObjects;
-        public int currentWeaponIndex;
+        public EquipmentSet primaryEquipment;
+        public EquipmentSet secondaryEquipment;
+
+        //[SerializeReference] 
+        //public List<WeaponData> weapons;
+        //
+        //public List<WeaponBase> weaponObjects;
+        public bool usingSecondaryEquip;
+        public bool usingSecondaryWep;
         public Transform weaponR, weaponL;
+
+        public WeaponBase currentWeapon => GetCurrentWeaponObj();
+
         #region Debugging
         [Header("Editor Debugging")]
-        [SerializeField] private WeaponSO editorWeapon1;
-        [SerializeField] private WeaponSO editorWeapon2;
-        [SerializeField] private WeaponSO editorWeapon3;
+        [SerializeField] private WeaponSO editorWeapon;
+        [SerializeField] private bool editorIsSecondaryEquipment;
+        [SerializeField] private bool editorIsSecondaryWeapon;
         [ContextMenu("Add Weapon To Equipment")]
         private void AddWeaponInEditor()
         {
-            EquipItem(editorWeapon1.data, 0);
-            EquipItem(editorWeapon2.data, 1);
-            EquipItem(editorWeapon3.data, 2);
+            if (editorWeapon == null)
+                return;
+            if (editorIsSecondaryEquipment)
+            {
+                if (editorIsSecondaryWeapon)
+                    secondaryEquipment.secondary = editorWeapon.data;
+                else
+                    secondaryEquipment.primary = editorWeapon.data;
+            }
+            else
+            {
+                if (editorIsSecondaryWeapon)
+                    primaryEquipment.secondary = editorWeapon.data;
+                else
+                    primaryEquipment.primary = editorWeapon.data;
+            }
         }
         #endregion
         private void Start()
         {
-            Equip(0);
+            ReloadEquipment();
         }
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
                 Debug.Log(GetCurrentWeaponObj<RangedWeapon>());
 
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                Equip(0);
+                SwapEquipment();
             if (Input.GetKeyDown(KeyCode.Alpha2))
-                Equip(1);
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-                Equip(2);
+                SwapWeapon();
 
             if (!StaticRefences.animDataHandler.preventAttacking)
             {
-                weaponObjects[currentWeaponIndex].HandleInput();
-                GetCurrentWeaponObj().HandleInput();
-                GetCurrentWeaponObj().UpdateUI();
+                currentWeapon.HandleInput();
+                currentWeapon.UpdateUI();
             }
         }
-        public WeaponBase GetCurrentWeaponObj() => weaponObjects[currentWeaponIndex];
+        public WeaponBase GetCurrentWeaponObj()
+        {
+            if (usingSecondaryEquip)
+                return usingSecondaryWep ? secondaryEquipment.secondaryObject : secondaryEquipment.primaryObject;
+            else
+                return usingSecondaryWep ? primaryEquipment.secondaryObject : primaryEquipment.primaryObject;
+        }  
         public T GetCurrentWeaponObj<T>() where T : WeaponBase
         {
             WeaponBase wep = GetCurrentWeaponObj();
@@ -66,50 +148,33 @@ namespace Player
                 return null;
             }
         }
-        public void Equip(int index)
+        public void SwapEquipment()
         {
-            currentWeaponIndex = index;
-            handAnim.SetInteger("Weapon Type", (int)weapons[index].type);
+            usingSecondaryEquip = !usingSecondaryEquip;
+            UpdateSelectedWeapon();
+        }
+        public void SwapWeapon()
+        {
+            usingSecondaryWep = !usingSecondaryWep;
+            UpdateSelectedWeapon();
+        }
+        public void UpdateSelectedWeapon()
+        {
+            primaryEquipment.EnableSelectedWeapon(currentWeapon);
+            secondaryEquipment.EnableSelectedWeapon(currentWeapon);
+        }
 
-            for (int i = 0; i < weaponObjects.Count; i++)
-            {
-                if (index == i)
-                {
-                    if (!weaponObjects[i])
-                        CreateWeaponMesh(weapons[i], i);
+        public void ReloadEquipment()
+        {
+            primaryEquipment.DestroyGameObjects();
+            primaryEquipment.InstantiateMeshes(weaponR, weaponL);
 
-                    weaponObjects[i].Equip(this);
-                }
-                else if (weaponObjects[i])
-                    weaponObjects[i].Unequip();
-            }
+            secondaryEquipment.DestroyGameObjects();
+            secondaryEquipment.InstantiateMeshes(weaponR, weaponL);
         }
-        /// <param name="index"> 3 > index >= 0 </param>
-        public void EquipItem(WeaponData data, int index)
-        {
-            weapons[index] = data;
-            if (weaponObjects[index] != null && weaponObjects[index].gameObject != null)
-                Destroy(weaponObjects[index].gameObject);
-        }
-        public void CreateWeaponMesh(WeaponData data, int index)
-        {
-            WeaponBase w;
 
-            switch (data.hand)
-            {
-                case WeaponData.EquipedHand.left:
-                    w = Instantiate(data.GetWeapon(), weaponL).GetComponent<WeaponBase>();
-                    break;
-                case WeaponData.EquipedHand.right:
-                default:
-                    w = Instantiate(data.GetWeapon(), weaponR).GetComponent<WeaponBase>();
-                    break;
-            }
-            weaponObjects[index] = w;
-        }
-        public void ToggleWeaponVisibility(bool visible = true)
-        {
-            weaponObjects[currentWeaponIndex].ToggleVisibility(visible);
-        }
+        public void ToggleWeaponVisibility(bool visible = true) => currentWeapon.ToggleVisibility(visible);
+        public void PassDataToWeapon(WeaponBase.AnimDataStatePass data) => currentWeapon.ApplyDataInfo(data);
+
     }
 }

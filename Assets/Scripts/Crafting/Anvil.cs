@@ -35,7 +35,7 @@ namespace Crafting
         public int currentPart;
         public PartFunctions.PartData getPartData => PartFunctions.partDatas[currentPart - 1];
 
-        public AnvilUI ui;
+        public Zen.UI.AnvilUI ui;
 
         void Start()
         {

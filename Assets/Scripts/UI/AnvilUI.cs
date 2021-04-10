@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Crafting;
 
-namespace Crafting
+namespace Zen.UI
 {
     public class AnvilUI : WorldUI
     {

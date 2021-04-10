@@ -5,6 +5,12 @@ namespace Weapons
 {
     public abstract class WeaponBase : MonoBehaviour
     {
+        public enum AnimDataStatePass
+        { 
+            isReloadingTrue, 
+            isReloadingFalse,
+        }
+
         [HideInInspector]
         public Animator handAnim;
         [HideInInspector]
@@ -12,6 +18,7 @@ namespace Weapons
         [HideInInspector]
         public abstract WeaponType weaponType { get; }
         public GameObject mesh;
+
         public abstract void HandleInput();
         public abstract void UpdateUI();
         public virtual void Equip(Player.EquipmentController equipment)
@@ -29,6 +36,10 @@ namespace Weapons
         {
             mesh.SetActive(visible);
             StaticRefences.equipmentUI.EquipWeapon(weaponType);
+        }
+        public virtual void ApplyDataInfo(AnimDataStatePass data)
+        {
+            Debug.LogWarning("This method isnt overriden and shouldn't be called");
         }
     }
 }

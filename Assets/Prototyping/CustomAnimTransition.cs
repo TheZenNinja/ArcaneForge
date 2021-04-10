@@ -10,6 +10,8 @@ public class CustomAnimTransition : AnimatorStateTransition
 
     public CustomAnimTransition()
     { 
-
+        
     }
+
+    
 }

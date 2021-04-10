@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using Inventory;
+using Player;
 
 public class PlayerData : MonoBehaviour
 {
+    //public AnimationDataHandler animationDataHandler;
+    //public Player.UI.EquipmentUI equipmentUI;
+    //public EquipmentController equipmentController;
+    //public FPCameraController camController; 
+
     private InventoryController _inv;
     public InventoryController inv => _inv;
     public InventoryUI invUi;

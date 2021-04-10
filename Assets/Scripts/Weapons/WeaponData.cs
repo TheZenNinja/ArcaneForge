@@ -9,6 +9,13 @@ namespace Weapons
     [System.Serializable]
     public class WeaponData
     {
+        public static WeaponData none => new WeaponData() 
+        {
+            hand = EquipedHand.right,
+            parts = new List<PartData>(),
+            type = WeaponType.dagger 
+        };
+
         public enum EquipedHand
         { 
             right = 0,
