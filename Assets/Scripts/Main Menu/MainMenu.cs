@@ -52,6 +52,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString(playedTutorialKey, currentTutorialVersion.ToString());
         SceneLoader.LoadSceneWithBar(2);
     }
-        public void LoadLevel() => SceneLoader.LoadSceneWithBar(3);
+    public void LoadLevel() => SceneLoader.LoadSceneWithBar(4);
     public void Exit() => Application.Quit();
 }

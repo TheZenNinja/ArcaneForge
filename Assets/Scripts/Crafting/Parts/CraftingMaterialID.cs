@@ -22,6 +22,19 @@ namespace Crafting
             this.type = CraftingMaterialType.metal;
             this.subtype = (int)material;
         }
+        public override string ToString()
+        {
+            switch (type)
+            {
+                case CraftingMaterialType.metal:
+                    return ((MetalMaterial)subtype).ToString();
+                case CraftingMaterialType.wood:
+                case CraftingMaterialType.stone:
+                case CraftingMaterialType.other:
+                default:
+                    return "ERROR";
+            }
+        }
         public int CompareTo(CraftingMaterialID other)
         {
             int typeTest = type.CompareTo(other.type);

@@ -66,7 +66,8 @@ namespace Zen.UI
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+
+            if (!UIController.inUI && Input.GetKeyDown(KeyCode.Escape))
             {
                 open = !open;
                 ui.SetActive(open);

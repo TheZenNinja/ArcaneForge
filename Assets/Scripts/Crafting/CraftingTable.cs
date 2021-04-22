@@ -73,7 +73,7 @@ namespace Crafting
             else
                 recipe = null;
             
-            Debug.Log(recipe);
+            //Debug.Log(recipe);
             
             text.text = recipe == null ? "" : recipe.name;
         }

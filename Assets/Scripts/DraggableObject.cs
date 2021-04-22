@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public abstract class DraggableObject : MonoBehaviour, IInteractable
 {
     private bool _colEnabled;

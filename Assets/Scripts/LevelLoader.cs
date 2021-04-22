@@ -20,14 +20,13 @@ public class LevelLoader : MonoBehaviour
 
         if (SceneLoader.bufferedScene != -1)
         {
-            AsyncOperation load = SceneManager.LoadSceneAsync(SceneLoader.bufferedScene);
+            SceneManager.LoadScene("Universal Scene", LoadSceneMode.Single);
+            AsyncOperation load = SceneManager.LoadSceneAsync(SceneLoader.bufferedScene, LoadSceneMode.Additive);
             while (!load.isDone)
             {
                 progressBar.value = Mathf.Clamp01(load.progress / 0.9f);
                 yield return null;
             }
-            yield return new WaitForSeconds(1f);
-
             SceneLoader.bufferedScene = -1;
         }
         else

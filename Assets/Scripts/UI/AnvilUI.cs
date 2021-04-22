@@ -7,7 +7,7 @@ using Crafting;
 
 namespace Zen.UI
 {
-    public class AnvilUI : WorldUI
+    public class AnvilUI : MonoBehaviour
     {
         [HideInInspector]
         public Anvil anvil;

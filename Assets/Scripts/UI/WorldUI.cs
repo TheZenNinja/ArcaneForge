@@ -6,21 +6,17 @@ namespace Zen.UI
 {
     public class WorldUI : UIBase, IInteractable
     {
+        public Collider interactCol;
         public override void Start()
         {
             var c = GetComponent<Canvas>();
             c.worldCamera = StaticRefences.camController.cam;
             canvas = c.gameObject;
         }
-        public void Update()
-        {
-            if (isActive == true && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Escape)))
-                Close(null);
-
-        }
-        public virtual bool Interact(PlayerData p)
+        public bool Interact(PlayerData p)
         {
             Open(p);
+            Debug.Log("Interact");
             return true;
         }
         public override void Open(PlayerData player)
@@ -28,13 +24,16 @@ namespace Zen.UI
             //Debug.Log("Interacted with canvas");
             base.Open(player);
             canvas.SetActive(true);
+            if (interactCol)
+                interactCol.enabled = false;
         }
 
         public override void Close(PlayerData player)
         {
             base.Close(player);
             canvas.SetActive(true);
+            if (interactCol)
+                interactCol.enabled = true;
         }
-        public void ButtonTest() => Debug.Log("Pushed button");
     }
 }

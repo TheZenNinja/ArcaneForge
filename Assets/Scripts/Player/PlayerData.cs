@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
     //public EquipmentController equipmentController;
     //public FPCameraController camController; 
 
+    public int money;
+
     private InventoryController _inv;
     public InventoryController inv => _inv;
     public InventoryUI invUi;

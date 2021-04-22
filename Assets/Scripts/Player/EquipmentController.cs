@@ -144,7 +144,7 @@ namespace Player
             }
             catch (System.InvalidCastException ex)
             {
-                Debug.Log("Invalid Cast");
+                Debug.Log($"Invalid Cast: {ex}");
                 return null;
             }
         }
